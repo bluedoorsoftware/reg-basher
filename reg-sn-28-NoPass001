@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Set these variables to your own values
-WALLET_PASSWORD="MsThXC7UM"
+WALLET_PASSWORD="XXXXXXXXX"
 
 # Function to perform registration
 perform_registration() {
