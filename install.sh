@@ -24,6 +24,12 @@ do_get_hostname() {
   curl -s http://169.254.169.254/metadata/v1.json | jq -r .hostname
 }
 
+do_get_ip_address() { 
+  curl -s http://169.254.169.254/metadata/v1.json | jq -r .interfaces.public[0].ipv4.ip_address
+}
+
+
+
 
 
 abort() {
