@@ -7,7 +7,9 @@ send_email() {
     local subject="$4"
     local content="$5"
 
-    curl -X POST "https://mandrillapp.com/api/1.0/messages/send.json" \
+	echo "send_email started!"
+	
+    local response=$(curl -w "%{http_code}" -X POST "https://mandrillapp.com/api/1.0/messages/send.json" \
     -H "Content-Type: application/json" \
     -d "{
       \"key\": \"${api_key}\",
@@ -23,7 +25,20 @@ send_email() {
         \"subject\": \"${subject}\",
         \"html\": \"${content}\"
       }
-    }"
+    }")
+
+    local body=$(echo "$response" | sed -e 's/.*\(.\{3\}\)$/\1/')
+    local status=${response: -3}
+
+    if [ "$status" -eq 200 ]; then
+        echo "Email sent successfully!"
+        echo "Response: $body"
+    else
+        echo "Failed to send email."
+        echo "Status code: $status"
+        echo "Response: $body"
+    fi
 }
+
 
 send_email "$@"
