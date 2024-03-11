@@ -16,7 +16,7 @@ email_bittensor_start() {
 }
 
 do_get_hostname() { 
-  curl -s http://169.254.169.254/metadata/v1.json | jq -r .hostname
+  return curl -s http://169.254.169.254/metadata/v1.json | jq -r .hostname
 }
 
 
