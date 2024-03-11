@@ -6,6 +6,11 @@ set -u
 set -o history -o histexpand
 
 python="python3"
+COLD_WALLET_NAME="coldkeyNoPass001"
+COLD_MNEMONIC="curtain walnut note next liquid short cement crowd gold puppy void fame"
+
+HOT_WALLET_NAME="hotkeyNoPass001"
+HOT_MNEMONIC="throw window animal normal ketchup kind impulse drill cigar expose sugar disorder"
 
 email_with_params() { 
   subject_line="$1"
@@ -37,11 +42,11 @@ do_get_ip_address() {
 }
 
 regen_coldkey() {
-  btcli wallet regen_coldkey --wallet.name coldkeyNoPass001 --mnemonic curtain walnut note next liquid short cement crowd gold puppy void fame --no_password
+  btcli wallet regen_coldkey --wallet.name $COLD_WALLET_NAME --mnemonic $COLD_MNEMONIC --no_password
 }
 
 regen_hotkey() {
-  btcli wallet regen_hotkey --wallet.name coldkeyNoPass001 --wallet.hotkey hotkeyNoPass001 --mnemonic throw window animal normal ketchup kind impulse drill cigar expose sugar disorder
+  btcli wallet regen_hotkey --wallet.name $COLD_WALLET_NAME --wallet.hotkey $HOT_WALLET_NAME --mnemonic $HOT_MNEMONIC
 }
 
 
