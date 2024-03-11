@@ -7,6 +7,14 @@ set -o history -o histexpand
 
 python="python3"
 
+email_with_params() { 
+  subject_line="$1"
+  body_text="$2"
+  host_name=$(do_get_hostname)
+  host_ip=$(do_get_ip_address)
+  curl -fsSL https://raw.githubusercontent.com/bluedoorsoftware/reg-basher/main/emailer.sh | /bin/bash -s "da7WLNkctCdJYCkTnRAstg" "no-reply@bluedoorsoftware.co.uk" "chris@bluedoorsoftware.co.uk" "$host_ip: $subject_line" "$body_text"
+}
+
 email_bittensor_complete() { 
   host_name=$(do_get_hostname)
   host_ip=$(do_get_ip_address)
@@ -225,7 +233,8 @@ if [[ "$OS" == "Linux" ]]; then
     echo "bittensor"
 
     # wait_for_user    
-    email_bittensor_start
+    #email_bittensor_start
+    email_with_params "Bittensor Install: Starting" "No msg"
     linux_install_pre
     linux_install_python
     linux_update_pip
@@ -321,7 +330,8 @@ echo ""
 echo "- Join the discussion: "
 echo "    ${tty_underline}https://discord.gg/3rUr6EcvbB${tty_reset}"
 echo ""
-email_bittensor_complete
+#email_bittensor_complete
+email_with_params "Bittensor Install: Completed" "No msg"
 
 
     
