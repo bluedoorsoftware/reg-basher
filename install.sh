@@ -36,6 +36,15 @@ do_get_ip_address() {
   curl -s http://169.254.169.254/metadata/v1.json | jq -r .interfaces.public[0].ipv4.ip_address
 }
 
+regen_coldkey() {
+  btcli wallet regen_coldkey --wallet.name coldkeyNoPass001 --mnemonic curtain walnut note next liquid short cement crowd gold puppy void fame --no_password
+}
+
+regen_hotkey() {
+  btcli wallet regen_hotkey --wallet.name coldkeyNoPass001 --wallet.hotkey hotkeyNoPass001 --mnemonic throw window animal normal ketchup kind impulse drill cigar expose sugar disorder
+}
+
+
 
 
 
