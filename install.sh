@@ -207,11 +207,12 @@ if [[ "$OS" == "Linux" ]]; then
     echo "python3-pip"
     echo "bittensor"
 
-    # wait_for_user
+    # wait_for_user    
     email_bittensor_start
     linux_install_pre
     linux_install_python
     linux_update_pip
+    
     linux_install_bittensor
 
     ohai "Would you like to increase the ulimit? This will allow your miner to run for a longer time"
