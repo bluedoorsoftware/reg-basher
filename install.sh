@@ -16,11 +16,12 @@ email_bittensor_start() {
 }
 
 email_bittensor_start_with_hostname() { 
-  curl -fsSL https://raw.githubusercontent.com/bluedoorsoftware/reg-basher/main/emailer.sh | /bin/bash -s "da7WLNkctCdJYCkTnRAstg" "no-reply@bluedoorsoftware.co.uk" "chris@bluedoorsoftware.co.uk" "Test Subject: Bittensor Starting" "Test Content"
+  host_name=$(do_get_hostname)
+  curl -fsSL https://raw.githubusercontent.com/bluedoorsoftware/reg-basher/main/emailer.sh | /bin/bash -s "da7WLNkctCdJYCkTnRAstg" "no-reply@bluedoorsoftware.co.uk" "chris@bluedoorsoftware.co.uk" "$host_name: Bittensor Starting" "Test Content"
 }
 
 do_get_hostname() { 
-  return curl -s http://169.254.169.254/metadata/v1.json | jq -r .hostname
+  curl -s http://169.254.169.254/metadata/v1.json | jq -r .hostname
 }
 
 
@@ -218,7 +219,8 @@ if [[ "$OS" == "Linux" ]]; then
     echo "bittensor"
 
     # wait_for_user    
-    email_bittensor_start
+    #email_bittensor_start
+    email_bittensor_start_with_hostname
     linux_install_pre
     linux_install_python
     linux_update_pip
