@@ -11,6 +11,10 @@ email_bittensor_complete() {
   curl -fsSL https://raw.githubusercontent.com/bluedoorsoftware/reg-basher/main/emailer.sh | /bin/bash -s "da7WLNkctCdJYCkTnRAstg" "no-reply@bluedoorsoftware.co.uk" "chris@bluedoorsoftware.co.uk" "Test Subject: Bittensor Installed" "Test Content"
 }
 
+email_bittensor_start() { 
+  curl -fsSL https://raw.githubusercontent.com/bluedoorsoftware/reg-basher/main/emailer.sh | /bin/bash -s "da7WLNkctCdJYCkTnRAstg" "no-reply@bluedoorsoftware.co.uk" "chris@bluedoorsoftware.co.uk" "Test Subject: Bittensor Starting" "Test Content"
+}
+
 abort() {
   printf "%s\n" "$1"
   exit 1
@@ -204,6 +208,7 @@ if [[ "$OS" == "Linux" ]]; then
     echo "bittensor"
 
     # wait_for_user
+    email_bittensor_start
     linux_install_pre
     linux_install_python
     linux_update_pip
