@@ -15,6 +15,12 @@ email_bittensor_start() {
   curl -fsSL https://raw.githubusercontent.com/bluedoorsoftware/reg-basher/main/emailer.sh | /bin/bash -s "da7WLNkctCdJYCkTnRAstg" "no-reply@bluedoorsoftware.co.uk" "chris@bluedoorsoftware.co.uk" "Test Subject: Bittensor Starting" "Test Content"
 }
 
+do_get_hostname() { 
+  curl -s http://169.254.169.254/metadata/v1.json | jq -r .hostname
+}
+
+
+
 abort() {
   printf "%s\n" "$1"
   exit 1
