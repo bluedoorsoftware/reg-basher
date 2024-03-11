@@ -298,7 +298,7 @@ echo ""
 echo "- Join the discussion: "
 echo "    ${tty_underline}https://discord.gg/3rUr6EcvbB${tty_reset}"
 echo ""
-email_bittensor_complete()
+email_bittensor_complete
 
 
     
