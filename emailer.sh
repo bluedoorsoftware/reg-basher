@@ -1,3 +1,5 @@
+#!/bin/bash
+
 send_email() {
     local api_key="$1"
     local from_email="$2"
@@ -23,3 +25,5 @@ send_email() {
       }
     }"
 }
+
+send_email "$@"
