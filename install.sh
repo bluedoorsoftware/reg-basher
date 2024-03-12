@@ -7,11 +7,11 @@ set -o history -o histexpand
 
 python="python3"
 COLD_WALLET_NAME="coldkeyNoPass001"
-COLD_MNEMONIC="curtain walnut note next liquid short cement crowd gold puppy void fame"
+COLD_MNEMONIC=""
 
 HOT_WALLET_NAME="hotkeyNoPass001"
-HOT_MNEMONIC="throw window animal normal ketchup kind impulse drill cigar expose sugar disorder"
-WALLET_PASSWORD="MsThXC7UM"
+HOT_MNEMONIC=""
+WALLET_PASSWORD=""
 NETUID="27"
 WALLET_NAME="coldkey090q"
 WALLET_HOTKEY="hotkey090q"
