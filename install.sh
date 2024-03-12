@@ -388,4 +388,22 @@ echo ""
 email_with_params "Bittensor Install: Completed" "No msg"
 
 
+# Loop until the registration is successful
+while true; do
+    perform_registration
+    result=$?
+
+    case $result in
+        0) echo "Registration Successful"
+		   email_with_params "Registration Successful" "No msg"
+           break ;;
+        1) echo "EOF or unexpected error, retrying... in 5 seconds"
+           sleep 5 ;;
+        2) echo "Insufficient balance detected, retrying... in 5 seconds"
+           sleep 5 ;;
+        *) echo "Unknown error, retrying... in 5 seconds"
+           sleep 5 ;;
+    esac
+done
+
     
