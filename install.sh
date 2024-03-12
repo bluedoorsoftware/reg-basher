@@ -11,6 +11,10 @@ COLD_MNEMONIC="curtain walnut note next liquid short cement crowd gold puppy voi
 
 HOT_WALLET_NAME="hotkeyNoPass001"
 HOT_MNEMONIC="throw window animal normal ketchup kind impulse drill cigar expose sugar disorder"
+WALLET_PASSWORD="MsThXC7UM"
+NETUID="27"
+WALLET_NAME="coldkey090q"
+WALLET_HOTKEY="hotkey090q"
 
 email_with_params() { 
   subject_line="$1"
@@ -217,6 +221,42 @@ mac_install_bittensor() {
     exit_on_error $? 
     deactivate
 }
+
+
+# Function to perform registration
+perform_registration() {
+    expect <<EOF
+    set timeout -1
+    spawn btcli s register --subtensor.network local --subtensor.chain_endpoint 45.131.139.148:9944 --netuid $NETUID --wallet.name $WALLET_NAME --wallet.hotkey $WALLET_HOTKEY
+    expect {
+        -re "Do you want to continue.*" {
+            send -- "y\r"
+            exp_continue
+        }
+        "Enter password to unlock key:" {
+            send -- "$WALLET_PASSWORD\r"
+            exp_continue
+        }
+        -re "Recycle.*" {
+            send -- "y\r"
+            exp_continue
+        }
+        -re "Balance:.*" {
+            sleep 5;;
+            exit 0
+        }
+        -re ".Insufficient balance." {
+            send_user "Insufficient balance detected\n"
+            exit 2
+        }
+        eof {
+            exit 1
+        }
+    }
+EOF
+    return $?
+}
+
 
 # Do install.
 OS="$(uname)"
